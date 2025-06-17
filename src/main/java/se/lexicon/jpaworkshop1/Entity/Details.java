@@ -1,19 +1,32 @@
 package se.lexicon.jpaworkshop1.Entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
+@Data
+/*
+the use of Entity makes so Pojo´s registers to our db in a plain and simple way with the help of our info provided
+ */
 public class Details {
 
 
+    /*
+     @Id defines our primary key, we use @GeneratedValue as a Strategy to increase the value of id auto, or with different,
+     contexts like, identity, uuid, sequence.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    /*
+     @Column is just a column in the table, where we can define rules for the column.
+     */
     @Column(unique = true, nullable = false)
     private String email;
 
@@ -23,70 +36,7 @@ public class Details {
     @Column(nullable = false)
     private LocalDate birthDate;
 
-    public Details() {
-    }
 
-    public Details(String email, String name, LocalDate birthDate) {
-        this.email = email;
-        this.name = name;
-        this.birthDate = birthDate;
-    }
-
-    public Details(int id, String email, String name, LocalDate birthDate) {
-        this.id = id;
-        this.email = email;
-        this.name = name;
-        this.birthDate = birthDate;
-    }
-    public int getId() {
-        return id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Details details = (Details) o;
-        return id == details.id && Objects.equals(email, details.email) && Objects.equals(name, details.name) && Objects.equals(birthDate, details.birthDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email, name, birthDate);
-    }
-
-    @Override
-    public String toString() {
-        return "Details{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", name='" + name + '\'' +
-                ", birthDate=" + birthDate +
-                '}';
-    }
 }
 
 
