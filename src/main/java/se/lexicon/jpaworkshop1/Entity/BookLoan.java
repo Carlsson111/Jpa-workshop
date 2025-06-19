@@ -28,4 +28,6 @@ public class BookLoan {
     @JoinColumn()
     private Book book;
 
+
+
 }

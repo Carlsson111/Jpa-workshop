@@ -27,4 +27,14 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors;
+
+    public void addAuthor(Author author) {
+        authors.add(author);
+        author.getWrittenBooks().add(this);
+    }
+
+    public void removeAuthor(Author author) {
+        authors.remove(author);
+        author.getWrittenBooks().remove(this);
+    }
 }

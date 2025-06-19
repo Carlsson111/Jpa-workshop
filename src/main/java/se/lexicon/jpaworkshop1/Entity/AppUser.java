@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 public class AppUser {
@@ -25,6 +28,18 @@ public class AppUser {
     @OneToOne
     @JoinColumn(name= "details_id")
     private Details userDetails;
+
+    @OneToMany(mappedBy = "borrower", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BookLoan> loans = new ArrayList<>();
+
+    public void addLoan (BookLoan loan){
+        loans.add(loan);
+        loan.setBorrower(this);
+    }
+    public void removeLoan (BookLoan loan){
+        loans.remove(loan);
+        loan.setBorrower(null);
+    }
 
 }
 
