@@ -23,4 +23,15 @@ public class Author {
     @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "authors", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     Set<Book> writtenBooks = new HashSet<>();
+
+    public void addBook(Book book) {
+        writtenBooks.add(book);
+        book.getAuthors().add(this);
+    }
+
+    public void removeBook(Book book) {
+        writtenBooks.remove(book);
+        book.getAuthors().remove(this);
+    }
+
 }
