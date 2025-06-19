@@ -12,5 +12,5 @@ public interface DetailsRepository extends CrudRepository<Details, Integer> {
 
     List<Details>findByNameContains(String name);
 
-    List<Details> findByNameIgnoreCase(String name);
+    List<Details>findByNameIgnoreCase(String name);
 }

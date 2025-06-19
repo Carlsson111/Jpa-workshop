@@ -17,12 +17,7 @@ public interface AuthorRepository extends CrudRepository<Author, Integer> {
     @Query("SELECT a FROM Author a JOIN a.writtenBooks b WHERE b.id = :bookId")
     List<Author> findByWrittenBooks_BookId(@Param("bookId") int bookId);
 
-    /*
-    @Query("update Author a set a.firstName = :firstName, a.lastName = :lastName where a.id = :id")
-    @Modifying
-    Author updateNameById(@Param("id") int id, @Param("firstName") String firstName, @Param("lastName") String lastName);
 
-     */
 
     @Query("UPDATE Author a set a.firstName = :firstName, a.lastName = :lastName WHERE a.id = :id")
     @Modifying
@@ -31,7 +26,6 @@ public interface AuthorRepository extends CrudRepository<Author, Integer> {
                               @Param("lastName") String lastName);
 
 
-//void uses in the context that you dont know what rows that will be updated.
 
     void deleteAuthorById(int authorId);
 }

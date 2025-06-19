@@ -2,6 +2,8 @@ package se.lexicon.jpaworkshop1.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.Set;
 
@@ -17,6 +19,9 @@ public class Book {
     @Column(nullable = false)
     private String title;
     private int maxLoanDays;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable(name = "book_author",
             joinColumns = @JoinColumn(name = "book_id"),
