@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 import se.lexicon.jpaworkshop1.Entity.Author;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public interface AuthorRepository extends CrudRepository<Author, Integer> {
 
     @Query("UPDATE Author a set a.firstName = :firstName, a.lastName = :lastName WHERE a.id = :id")
     @Modifying
+    @Transactional
     void updateAuthorNameById(@Param("id") int id,
                               @Param("firstName") String firstName,
                               @Param("lastName") String lastName);
