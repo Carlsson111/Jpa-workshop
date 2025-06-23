@@ -18,7 +18,7 @@ public class BookLoan {
     @Column(nullable = false)
     private LocalDate dueDate;
 
-    private Boolean returned;
+    private Boolean returned =false;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn()

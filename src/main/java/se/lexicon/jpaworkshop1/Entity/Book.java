@@ -18,7 +18,12 @@ public class Book {
     private String isbn;
     @Column(nullable = false)
     private String title;
+
     private int maxLoanDays;
+
+    @Column(nullable = false)
+    private boolean available = true;
+
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
@@ -36,5 +41,12 @@ public class Book {
     public void removeAuthor(Author author) {
         authors.remove(author);
         author.getWrittenBooks().remove(this);
+    }
+    public void markAsUnavailable() {
+        this.available = false;
+    }
+
+    public void markAsAvailable() {
+        this.available = true;
     }
 }
